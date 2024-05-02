@@ -1,0 +1,1658 @@
+problem:
+- instance: 0 <= conv1_G < 1 and 0 <= conv1_C < 3 and 0 <= conv1_M < 64 and 0 <= conv1_N
+    < 2 and 0 <= conv1_P < 112 and 0 <= conv1_Q < 112 and 0 <= conv1_R < 7 and 0 <=
+    conv1_S < 7
+  shape:
+    data-spaces:
+    - name: conv1_filter
+      projection: '[ conv1_G, conv1_C, conv1_M, conv1_R, conv1_S ]'
+    - name: x_out
+      projection: '[ conv1_N, conv1_G*3 + conv1_C, conv1_R + conv1_P*2,  conv1_S +
+        conv1_Q*2 ]'
+    - name: conv1_out
+      projection: '[ conv1_N, conv1_G*64 + conv1_M, conv1_P, conv1_Q ]'
+      read-write: true
+    dimensions:
+    - conv1_G
+    - conv1_C
+    - conv1_M
+    - conv1_R
+    - conv1_S
+    - conv1_N
+    - conv1_P
+    - conv1_Q
+    name: conv1
+- instance: 0 <= maxpool_C < 64 and 0 <= maxpool_N < 2 and 0 <= maxpool_P < 56 and
+    0 <= maxpool_Q < 56 and 0 <= maxpool_R < 3 and 0 <= maxpool_S < 3
+  shape:
+    data-spaces:
+    - name: conv1_out
+      projection: '[ maxpool_N, maxpool_C, maxpool_R + maxpool_P*2,  maxpool_S + maxpool_Q*2
+        ]'
+    - name: maxpool_out
+      projection: '[ maxpool_N, maxpool_C, maxpool_P, maxpool_Q ]'
+      read-write: true
+    dimensions:
+    - maxpool_C
+    - maxpool_R
+    - maxpool_S
+    - maxpool_N
+    - maxpool_P
+    - maxpool_Q
+    name: maxpool
+- instance: 0 <= layer1_0_conv1_G < 1 and 0 <= layer1_0_conv1_C < 64 and 0 <= layer1_0_conv1_M
+    < 64 and 0 <= layer1_0_conv1_N < 2 and 0 <= layer1_0_conv1_P < 56 and 0 <= layer1_0_conv1_Q
+    < 56 and 0 <= layer1_0_conv1_R < 1 and 0 <= layer1_0_conv1_S < 1
+  shape:
+    data-spaces:
+    - name: layer1_0_conv1_filter
+      projection: '[ layer1_0_conv1_G, layer1_0_conv1_C, layer1_0_conv1_M, layer1_0_conv1_R,
+        layer1_0_conv1_S ]'
+    - name: maxpool_out
+      projection: '[ layer1_0_conv1_N, layer1_0_conv1_G*64 + layer1_0_conv1_C, layer1_0_conv1_R
+        + layer1_0_conv1_P*1,  layer1_0_conv1_S + layer1_0_conv1_Q*1 ]'
+    - name: layer1_0_conv1_out
+      projection: '[ layer1_0_conv1_N, layer1_0_conv1_G*64 + layer1_0_conv1_M, layer1_0_conv1_P,
+        layer1_0_conv1_Q ]'
+      read-write: true
+    dimensions:
+    - layer1_0_conv1_G
+    - layer1_0_conv1_C
+    - layer1_0_conv1_M
+    - layer1_0_conv1_R
+    - layer1_0_conv1_S
+    - layer1_0_conv1_N
+    - layer1_0_conv1_P
+    - layer1_0_conv1_Q
+    name: layer1_0_conv1
+- instance: 0 <= layer1_0_conv2_G < 1 and 0 <= layer1_0_conv2_C < 64 and 0 <= layer1_0_conv2_M
+    < 64 and 0 <= layer1_0_conv2_N < 2 and 0 <= layer1_0_conv2_P < 56 and 0 <= layer1_0_conv2_Q
+    < 56 and 0 <= layer1_0_conv2_R < 3 and 0 <= layer1_0_conv2_S < 3
+  shape:
+    data-spaces:
+    - name: layer1_0_conv2_filter
+      projection: '[ layer1_0_conv2_G, layer1_0_conv2_C, layer1_0_conv2_M, layer1_0_conv2_R,
+        layer1_0_conv2_S ]'
+    - name: layer1_0_conv1_out
+      projection: '[ layer1_0_conv2_N, layer1_0_conv2_G*64 + layer1_0_conv2_C, layer1_0_conv2_R
+        + layer1_0_conv2_P*1,  layer1_0_conv2_S + layer1_0_conv2_Q*1 ]'
+    - name: layer1_0_conv2_out
+      projection: '[ layer1_0_conv2_N, layer1_0_conv2_G*64 + layer1_0_conv2_M, layer1_0_conv2_P,
+        layer1_0_conv2_Q ]'
+      read-write: true
+    dimensions:
+    - layer1_0_conv2_G
+    - layer1_0_conv2_C
+    - layer1_0_conv2_M
+    - layer1_0_conv2_R
+    - layer1_0_conv2_S
+    - layer1_0_conv2_N
+    - layer1_0_conv2_P
+    - layer1_0_conv2_Q
+    name: layer1_0_conv2
+- instance: 0 <= layer1_0_conv3_G < 1 and 0 <= layer1_0_conv3_C < 64 and 0 <= layer1_0_conv3_M
+    < 256 and 0 <= layer1_0_conv3_N < 2 and 0 <= layer1_0_conv3_P < 56 and 0 <= layer1_0_conv3_Q
+    < 56 and 0 <= layer1_0_conv3_R < 1 and 0 <= layer1_0_conv3_S < 1
+  shape:
+    data-spaces:
+    - name: layer1_0_conv3_filter
+      projection: '[ layer1_0_conv3_G, layer1_0_conv3_C, layer1_0_conv3_M, layer1_0_conv3_R,
+        layer1_0_conv3_S ]'
+    - name: layer1_0_conv2_out
+      projection: '[ layer1_0_conv3_N, layer1_0_conv3_G*64 + layer1_0_conv3_C, layer1_0_conv3_R
+        + layer1_0_conv3_P*1,  layer1_0_conv3_S + layer1_0_conv3_Q*1 ]'
+    - name: layer1_0_conv3_out
+      projection: '[ layer1_0_conv3_N, layer1_0_conv3_G*256 + layer1_0_conv3_M, layer1_0_conv3_P,
+        layer1_0_conv3_Q ]'
+      read-write: true
+    dimensions:
+    - layer1_0_conv3_G
+    - layer1_0_conv3_C
+    - layer1_0_conv3_M
+    - layer1_0_conv3_R
+    - layer1_0_conv3_S
+    - layer1_0_conv3_N
+    - layer1_0_conv3_P
+    - layer1_0_conv3_Q
+    name: layer1_0_conv3
+- instance: 0 <= layer1_0_downsample_0_G < 1 and 0 <= layer1_0_downsample_0_C < 64
+    and 0 <= layer1_0_downsample_0_M < 256 and 0 <= layer1_0_downsample_0_N < 2 and
+    0 <= layer1_0_downsample_0_P < 56 and 0 <= layer1_0_downsample_0_Q < 56 and 0
+    <= layer1_0_downsample_0_R < 1 and 0 <= layer1_0_downsample_0_S < 1
+  shape:
+    data-spaces:
+    - name: layer1_0_downsample_0_filter
+      projection: '[ layer1_0_downsample_0_G, layer1_0_downsample_0_C, layer1_0_downsample_0_M,
+        layer1_0_downsample_0_R, layer1_0_downsample_0_S ]'
+    - name: maxpool_out
+      projection: '[ layer1_0_downsample_0_N, layer1_0_downsample_0_G*64 + layer1_0_downsample_0_C,
+        layer1_0_downsample_0_R + layer1_0_downsample_0_P*1,  layer1_0_downsample_0_S
+        + layer1_0_downsample_0_Q*1 ]'
+    - name: layer1_0_downsample_0_out
+      projection: '[ layer1_0_downsample_0_N, layer1_0_downsample_0_G*256 + layer1_0_downsample_0_M,
+        layer1_0_downsample_0_P, layer1_0_downsample_0_Q ]'
+      read-write: true
+    dimensions:
+    - layer1_0_downsample_0_G
+    - layer1_0_downsample_0_C
+    - layer1_0_downsample_0_M
+    - layer1_0_downsample_0_R
+    - layer1_0_downsample_0_S
+    - layer1_0_downsample_0_N
+    - layer1_0_downsample_0_P
+    - layer1_0_downsample_0_Q
+    name: layer1_0_downsample_0
+- instance: 0 <= A < 2 and 0 <= B < 256 and 0 <= C < 56 and 0 <= D < 56
+  shape:
+    data-spaces:
+    - name: layer1_0_conv3_out
+      projection: '[ A, B, C, D ]'
+    - name: layer1_0_downsample_0_out
+      projection: '[ A, B, C, D ]'
+    - name: add_out
+      projection: '[ A, B, C, D ]'
+      read-write: true
+    dimensions:
+    - A
+    - B
+    - C
+    - D
+    name: add
+- instance: 0 <= layer1_1_conv1_G < 1 and 0 <= layer1_1_conv1_C < 256 and 0 <= layer1_1_conv1_M
+    < 64 and 0 <= layer1_1_conv1_N < 2 and 0 <= layer1_1_conv1_P < 56 and 0 <= layer1_1_conv1_Q
+    < 56 and 0 <= layer1_1_conv1_R < 1 and 0 <= layer1_1_conv1_S < 1
+  shape:
+    data-spaces:
+    - name: layer1_1_conv1_filter
+      projection: '[ layer1_1_conv1_G, layer1_1_conv1_C, layer1_1_conv1_M, layer1_1_conv1_R,
+        layer1_1_conv1_S ]'
+    - name: add_out
+      projection: '[ layer1_1_conv1_N, layer1_1_conv1_G*256 + layer1_1_conv1_C, layer1_1_conv1_R
+        + layer1_1_conv1_P*1,  layer1_1_conv1_S + layer1_1_conv1_Q*1 ]'
+    - name: layer1_1_conv1_out
+      projection: '[ layer1_1_conv1_N, layer1_1_conv1_G*64 + layer1_1_conv1_M, layer1_1_conv1_P,
+        layer1_1_conv1_Q ]'
+      read-write: true
+    dimensions:
+    - layer1_1_conv1_G
+    - layer1_1_conv1_C
+    - layer1_1_conv1_M
+    - layer1_1_conv1_R
+    - layer1_1_conv1_S
+    - layer1_1_conv1_N
+    - layer1_1_conv1_P
+    - layer1_1_conv1_Q
+    name: layer1_1_conv1
+- instance: 0 <= layer1_1_conv2_G < 1 and 0 <= layer1_1_conv2_C < 64 and 0 <= layer1_1_conv2_M
+    < 64 and 0 <= layer1_1_conv2_N < 2 and 0 <= layer1_1_conv2_P < 56 and 0 <= layer1_1_conv2_Q
+    < 56 and 0 <= layer1_1_conv2_R < 3 and 0 <= layer1_1_conv2_S < 3
+  shape:
+    data-spaces:
+    - name: layer1_1_conv2_filter
+      projection: '[ layer1_1_conv2_G, layer1_1_conv2_C, layer1_1_conv2_M, layer1_1_conv2_R,
+        layer1_1_conv2_S ]'
+    - name: layer1_1_conv1_out
+      projection: '[ layer1_1_conv2_N, layer1_1_conv2_G*64 + layer1_1_conv2_C, layer1_1_conv2_R
+        + layer1_1_conv2_P*1,  layer1_1_conv2_S + layer1_1_conv2_Q*1 ]'
+    - name: layer1_1_conv2_out
+      projection: '[ layer1_1_conv2_N, layer1_1_conv2_G*64 + layer1_1_conv2_M, layer1_1_conv2_P,
+        layer1_1_conv2_Q ]'
+      read-write: true
+    dimensions:
+    - layer1_1_conv2_G
+    - layer1_1_conv2_C
+    - layer1_1_conv2_M
+    - layer1_1_conv2_R
+    - layer1_1_conv2_S
+    - layer1_1_conv2_N
+    - layer1_1_conv2_P
+    - layer1_1_conv2_Q
+    name: layer1_1_conv2
+- instance: 0 <= layer1_1_conv3_G < 1 and 0 <= layer1_1_conv3_C < 64 and 0 <= layer1_1_conv3_M
+    < 256 and 0 <= layer1_1_conv3_N < 2 and 0 <= layer1_1_conv3_P < 56 and 0 <= layer1_1_conv3_Q
+    < 56 and 0 <= layer1_1_conv3_R < 1 and 0 <= layer1_1_conv3_S < 1
+  shape:
+    data-spaces:
+    - name: layer1_1_conv3_filter
+      projection: '[ layer1_1_conv3_G, layer1_1_conv3_C, layer1_1_conv3_M, layer1_1_conv3_R,
+        layer1_1_conv3_S ]'
+    - name: layer1_1_conv2_out
+      projection: '[ layer1_1_conv3_N, layer1_1_conv3_G*64 + layer1_1_conv3_C, layer1_1_conv3_R
+        + layer1_1_conv3_P*1,  layer1_1_conv3_S + layer1_1_conv3_Q*1 ]'
+    - name: layer1_1_conv3_out
+      projection: '[ layer1_1_conv3_N, layer1_1_conv3_G*256 + layer1_1_conv3_M, layer1_1_conv3_P,
+        layer1_1_conv3_Q ]'
+      read-write: true
+    dimensions:
+    - layer1_1_conv3_G
+    - layer1_1_conv3_C
+    - layer1_1_conv3_M
+    - layer1_1_conv3_R
+    - layer1_1_conv3_S
+    - layer1_1_conv3_N
+    - layer1_1_conv3_P
+    - layer1_1_conv3_Q
+    name: layer1_1_conv3
+- instance: 0 <= A < 2 and 0 <= B < 256 and 0 <= C < 56 and 0 <= D < 56
+  shape:
+    data-spaces:
+    - name: layer1_1_conv3_out
+      projection: '[ A, B, C, D ]'
+    - name: add_out
+      projection: '[ A, B, C, D ]'
+    - name: add_1_out
+      projection: '[ A, B, C, D ]'
+      read-write: true
+    dimensions:
+    - A
+    - B
+    - C
+    - D
+    name: add_1
+- instance: 0 <= layer1_2_conv1_G < 1 and 0 <= layer1_2_conv1_C < 256 and 0 <= layer1_2_conv1_M
+    < 64 and 0 <= layer1_2_conv1_N < 2 and 0 <= layer1_2_conv1_P < 56 and 0 <= layer1_2_conv1_Q
+    < 56 and 0 <= layer1_2_conv1_R < 1 and 0 <= layer1_2_conv1_S < 1
+  shape:
+    data-spaces:
+    - name: layer1_2_conv1_filter
+      projection: '[ layer1_2_conv1_G, layer1_2_conv1_C, layer1_2_conv1_M, layer1_2_conv1_R,
+        layer1_2_conv1_S ]'
+    - name: add_1_out
+      projection: '[ layer1_2_conv1_N, layer1_2_conv1_G*256 + layer1_2_conv1_C, layer1_2_conv1_R
+        + layer1_2_conv1_P*1,  layer1_2_conv1_S + layer1_2_conv1_Q*1 ]'
+    - name: layer1_2_conv1_out
+      projection: '[ layer1_2_conv1_N, layer1_2_conv1_G*64 + layer1_2_conv1_M, layer1_2_conv1_P,
+        layer1_2_conv1_Q ]'
+      read-write: true
+    dimensions:
+    - layer1_2_conv1_G
+    - layer1_2_conv1_C
+    - layer1_2_conv1_M
+    - layer1_2_conv1_R
+    - layer1_2_conv1_S
+    - layer1_2_conv1_N
+    - layer1_2_conv1_P
+    - layer1_2_conv1_Q
+    name: layer1_2_conv1
+- instance: 0 <= layer1_2_conv2_G < 1 and 0 <= layer1_2_conv2_C < 64 and 0 <= layer1_2_conv2_M
+    < 64 and 0 <= layer1_2_conv2_N < 2 and 0 <= layer1_2_conv2_P < 56 and 0 <= layer1_2_conv2_Q
+    < 56 and 0 <= layer1_2_conv2_R < 3 and 0 <= layer1_2_conv2_S < 3
+  shape:
+    data-spaces:
+    - name: layer1_2_conv2_filter
+      projection: '[ layer1_2_conv2_G, layer1_2_conv2_C, layer1_2_conv2_M, layer1_2_conv2_R,
+        layer1_2_conv2_S ]'
+    - name: layer1_2_conv1_out
+      projection: '[ layer1_2_conv2_N, layer1_2_conv2_G*64 + layer1_2_conv2_C, layer1_2_conv2_R
+        + layer1_2_conv2_P*1,  layer1_2_conv2_S + layer1_2_conv2_Q*1 ]'
+    - name: layer1_2_conv2_out
+      projection: '[ layer1_2_conv2_N, layer1_2_conv2_G*64 + layer1_2_conv2_M, layer1_2_conv2_P,
+        layer1_2_conv2_Q ]'
+      read-write: true
+    dimensions:
+    - layer1_2_conv2_G
+    - layer1_2_conv2_C
+    - layer1_2_conv2_M
+    - layer1_2_conv2_R
+    - layer1_2_conv2_S
+    - layer1_2_conv2_N
+    - layer1_2_conv2_P
+    - layer1_2_conv2_Q
+    name: layer1_2_conv2
+- instance: 0 <= layer1_2_conv3_G < 1 and 0 <= layer1_2_conv3_C < 64 and 0 <= layer1_2_conv3_M
+    < 256 and 0 <= layer1_2_conv3_N < 2 and 0 <= layer1_2_conv3_P < 56 and 0 <= layer1_2_conv3_Q
+    < 56 and 0 <= layer1_2_conv3_R < 1 and 0 <= layer1_2_conv3_S < 1
+  shape:
+    data-spaces:
+    - name: layer1_2_conv3_filter
+      projection: '[ layer1_2_conv3_G, layer1_2_conv3_C, layer1_2_conv3_M, layer1_2_conv3_R,
+        layer1_2_conv3_S ]'
+    - name: layer1_2_conv2_out
+      projection: '[ layer1_2_conv3_N, layer1_2_conv3_G*64 + layer1_2_conv3_C, layer1_2_conv3_R
+        + layer1_2_conv3_P*1,  layer1_2_conv3_S + layer1_2_conv3_Q*1 ]'
+    - name: layer1_2_conv3_out
+      projection: '[ layer1_2_conv3_N, layer1_2_conv3_G*256 + layer1_2_conv3_M, layer1_2_conv3_P,
+        layer1_2_conv3_Q ]'
+      read-write: true
+    dimensions:
+    - layer1_2_conv3_G
+    - layer1_2_conv3_C
+    - layer1_2_conv3_M
+    - layer1_2_conv3_R
+    - layer1_2_conv3_S
+    - layer1_2_conv3_N
+    - layer1_2_conv3_P
+    - layer1_2_conv3_Q
+    name: layer1_2_conv3
+- instance: 0 <= A < 2 and 0 <= B < 256 and 0 <= C < 56 and 0 <= D < 56
+  shape:
+    data-spaces:
+    - name: layer1_2_conv3_out
+      projection: '[ A, B, C, D ]'
+    - name: add_1_out
+      projection: '[ A, B, C, D ]'
+    - name: add_2_out
+      projection: '[ A, B, C, D ]'
+      read-write: true
+    dimensions:
+    - A
+    - B
+    - C
+    - D
+    name: add_2
+- instance: 0 <= layer2_0_conv1_G < 1 and 0 <= layer2_0_conv1_C < 256 and 0 <= layer2_0_conv1_M
+    < 128 and 0 <= layer2_0_conv1_N < 2 and 0 <= layer2_0_conv1_P < 56 and 0 <= layer2_0_conv1_Q
+    < 56 and 0 <= layer2_0_conv1_R < 1 and 0 <= layer2_0_conv1_S < 1
+  shape:
+    data-spaces:
+    - name: layer2_0_conv1_filter
+      projection: '[ layer2_0_conv1_G, layer2_0_conv1_C, layer2_0_conv1_M, layer2_0_conv1_R,
+        layer2_0_conv1_S ]'
+    - name: add_2_out
+      projection: '[ layer2_0_conv1_N, layer2_0_conv1_G*256 + layer2_0_conv1_C, layer2_0_conv1_R
+        + layer2_0_conv1_P*1,  layer2_0_conv1_S + layer2_0_conv1_Q*1 ]'
+    - name: layer2_0_conv1_out
+      projection: '[ layer2_0_conv1_N, layer2_0_conv1_G*128 + layer2_0_conv1_M, layer2_0_conv1_P,
+        layer2_0_conv1_Q ]'
+      read-write: true
+    dimensions:
+    - layer2_0_conv1_G
+    - layer2_0_conv1_C
+    - layer2_0_conv1_M
+    - layer2_0_conv1_R
+    - layer2_0_conv1_S
+    - layer2_0_conv1_N
+    - layer2_0_conv1_P
+    - layer2_0_conv1_Q
+    name: layer2_0_conv1
+- instance: 0 <= layer2_0_conv2_G < 1 and 0 <= layer2_0_conv2_C < 128 and 0 <= layer2_0_conv2_M
+    < 128 and 0 <= layer2_0_conv2_N < 2 and 0 <= layer2_0_conv2_P < 28 and 0 <= layer2_0_conv2_Q
+    < 28 and 0 <= layer2_0_conv2_R < 3 and 0 <= layer2_0_conv2_S < 3
+  shape:
+    data-spaces:
+    - name: layer2_0_conv2_filter
+      projection: '[ layer2_0_conv2_G, layer2_0_conv2_C, layer2_0_conv2_M, layer2_0_conv2_R,
+        layer2_0_conv2_S ]'
+    - name: layer2_0_conv1_out
+      projection: '[ layer2_0_conv2_N, layer2_0_conv2_G*128 + layer2_0_conv2_C, layer2_0_conv2_R
+        + layer2_0_conv2_P*2,  layer2_0_conv2_S + layer2_0_conv2_Q*2 ]'
+    - name: layer2_0_conv2_out
+      projection: '[ layer2_0_conv2_N, layer2_0_conv2_G*128 + layer2_0_conv2_M, layer2_0_conv2_P,
+        layer2_0_conv2_Q ]'
+      read-write: true
+    dimensions:
+    - layer2_0_conv2_G
+    - layer2_0_conv2_C
+    - layer2_0_conv2_M
+    - layer2_0_conv2_R
+    - layer2_0_conv2_S
+    - layer2_0_conv2_N
+    - layer2_0_conv2_P
+    - layer2_0_conv2_Q
+    name: layer2_0_conv2
+- instance: 0 <= layer2_0_conv3_G < 1 and 0 <= layer2_0_conv3_C < 128 and 0 <= layer2_0_conv3_M
+    < 512 and 0 <= layer2_0_conv3_N < 2 and 0 <= layer2_0_conv3_P < 28 and 0 <= layer2_0_conv3_Q
+    < 28 and 0 <= layer2_0_conv3_R < 1 and 0 <= layer2_0_conv3_S < 1
+  shape:
+    data-spaces:
+    - name: layer2_0_conv3_filter
+      projection: '[ layer2_0_conv3_G, layer2_0_conv3_C, layer2_0_conv3_M, layer2_0_conv3_R,
+        layer2_0_conv3_S ]'
+    - name: layer2_0_conv2_out
+      projection: '[ layer2_0_conv3_N, layer2_0_conv3_G*128 + layer2_0_conv3_C, layer2_0_conv3_R
+        + layer2_0_conv3_P*1,  layer2_0_conv3_S + layer2_0_conv3_Q*1 ]'
+    - name: layer2_0_conv3_out
+      projection: '[ layer2_0_conv3_N, layer2_0_conv3_G*512 + layer2_0_conv3_M, layer2_0_conv3_P,
+        layer2_0_conv3_Q ]'
+      read-write: true
+    dimensions:
+    - layer2_0_conv3_G
+    - layer2_0_conv3_C
+    - layer2_0_conv3_M
+    - layer2_0_conv3_R
+    - layer2_0_conv3_S
+    - layer2_0_conv3_N
+    - layer2_0_conv3_P
+    - layer2_0_conv3_Q
+    name: layer2_0_conv3
+- instance: 0 <= layer2_0_downsample_0_G < 1 and 0 <= layer2_0_downsample_0_C < 256
+    and 0 <= layer2_0_downsample_0_M < 512 and 0 <= layer2_0_downsample_0_N < 2 and
+    0 <= layer2_0_downsample_0_P < 28 and 0 <= layer2_0_downsample_0_Q < 28 and 0
+    <= layer2_0_downsample_0_R < 1 and 0 <= layer2_0_downsample_0_S < 1
+  shape:
+    data-spaces:
+    - name: layer2_0_downsample_0_filter
+      projection: '[ layer2_0_downsample_0_G, layer2_0_downsample_0_C, layer2_0_downsample_0_M,
+        layer2_0_downsample_0_R, layer2_0_downsample_0_S ]'
+    - name: add_2_out
+      projection: '[ layer2_0_downsample_0_N, layer2_0_downsample_0_G*256 + layer2_0_downsample_0_C,
+        layer2_0_downsample_0_R + layer2_0_downsample_0_P*2,  layer2_0_downsample_0_S
+        + layer2_0_downsample_0_Q*2 ]'
+    - name: layer2_0_downsample_0_out
+      projection: '[ layer2_0_downsample_0_N, layer2_0_downsample_0_G*512 + layer2_0_downsample_0_M,
+        layer2_0_downsample_0_P, layer2_0_downsample_0_Q ]'
+      read-write: true
+    dimensions:
+    - layer2_0_downsample_0_G
+    - layer2_0_downsample_0_C
+    - layer2_0_downsample_0_M
+    - layer2_0_downsample_0_R
+    - layer2_0_downsample_0_S
+    - layer2_0_downsample_0_N
+    - layer2_0_downsample_0_P
+    - layer2_0_downsample_0_Q
+    name: layer2_0_downsample_0
+- instance: 0 <= A < 2 and 0 <= B < 512 and 0 <= C < 28 and 0 <= D < 28
+  shape:
+    data-spaces:
+    - name: layer2_0_conv3_out
+      projection: '[ A, B, C, D ]'
+    - name: layer2_0_downsample_0_out
+      projection: '[ A, B, C, D ]'
+    - name: add_3_out
+      projection: '[ A, B, C, D ]'
+      read-write: true
+    dimensions:
+    - A
+    - B
+    - C
+    - D
+    name: add_3
+- instance: 0 <= layer2_1_conv1_G < 1 and 0 <= layer2_1_conv1_C < 512 and 0 <= layer2_1_conv1_M
+    < 128 and 0 <= layer2_1_conv1_N < 2 and 0 <= layer2_1_conv1_P < 28 and 0 <= layer2_1_conv1_Q
+    < 28 and 0 <= layer2_1_conv1_R < 1 and 0 <= layer2_1_conv1_S < 1
+  shape:
+    data-spaces:
+    - name: layer2_1_conv1_filter
+      projection: '[ layer2_1_conv1_G, layer2_1_conv1_C, layer2_1_conv1_M, layer2_1_conv1_R,
+        layer2_1_conv1_S ]'
+    - name: add_3_out
+      projection: '[ layer2_1_conv1_N, layer2_1_conv1_G*512 + layer2_1_conv1_C, layer2_1_conv1_R
+        + layer2_1_conv1_P*1,  layer2_1_conv1_S + layer2_1_conv1_Q*1 ]'
+    - name: layer2_1_conv1_out
+      projection: '[ layer2_1_conv1_N, layer2_1_conv1_G*128 + layer2_1_conv1_M, layer2_1_conv1_P,
+        layer2_1_conv1_Q ]'
+      read-write: true
+    dimensions:
+    - layer2_1_conv1_G
+    - layer2_1_conv1_C
+    - layer2_1_conv1_M
+    - layer2_1_conv1_R
+    - layer2_1_conv1_S
+    - layer2_1_conv1_N
+    - layer2_1_conv1_P
+    - layer2_1_conv1_Q
+    name: layer2_1_conv1
+- instance: 0 <= layer2_1_conv2_G < 1 and 0 <= layer2_1_conv2_C < 128 and 0 <= layer2_1_conv2_M
+    < 128 and 0 <= layer2_1_conv2_N < 2 and 0 <= layer2_1_conv2_P < 28 and 0 <= layer2_1_conv2_Q
+    < 28 and 0 <= layer2_1_conv2_R < 3 and 0 <= layer2_1_conv2_S < 3
+  shape:
+    data-spaces:
+    - name: layer2_1_conv2_filter
+      projection: '[ layer2_1_conv2_G, layer2_1_conv2_C, layer2_1_conv2_M, layer2_1_conv2_R,
+        layer2_1_conv2_S ]'
+    - name: layer2_1_conv1_out
+      projection: '[ layer2_1_conv2_N, layer2_1_conv2_G*128 + layer2_1_conv2_C, layer2_1_conv2_R
+        + layer2_1_conv2_P*1,  layer2_1_conv2_S + layer2_1_conv2_Q*1 ]'
+    - name: layer2_1_conv2_out
+      projection: '[ layer2_1_conv2_N, layer2_1_conv2_G*128 + layer2_1_conv2_M, layer2_1_conv2_P,
+        layer2_1_conv2_Q ]'
+      read-write: true
+    dimensions:
+    - layer2_1_conv2_G
+    - layer2_1_conv2_C
+    - layer2_1_conv2_M
+    - layer2_1_conv2_R
+    - layer2_1_conv2_S
+    - layer2_1_conv2_N
+    - layer2_1_conv2_P
+    - layer2_1_conv2_Q
+    name: layer2_1_conv2
+- instance: 0 <= layer2_1_conv3_G < 1 and 0 <= layer2_1_conv3_C < 128 and 0 <= layer2_1_conv3_M
+    < 512 and 0 <= layer2_1_conv3_N < 2 and 0 <= layer2_1_conv3_P < 28 and 0 <= layer2_1_conv3_Q
+    < 28 and 0 <= layer2_1_conv3_R < 1 and 0 <= layer2_1_conv3_S < 1
+  shape:
+    data-spaces:
+    - name: layer2_1_conv3_filter
+      projection: '[ layer2_1_conv3_G, layer2_1_conv3_C, layer2_1_conv3_M, layer2_1_conv3_R,
+        layer2_1_conv3_S ]'
+    - name: layer2_1_conv2_out
+      projection: '[ layer2_1_conv3_N, layer2_1_conv3_G*128 + layer2_1_conv3_C, layer2_1_conv3_R
+        + layer2_1_conv3_P*1,  layer2_1_conv3_S + layer2_1_conv3_Q*1 ]'
+    - name: layer2_1_conv3_out
+      projection: '[ layer2_1_conv3_N, layer2_1_conv3_G*512 + layer2_1_conv3_M, layer2_1_conv3_P,
+        layer2_1_conv3_Q ]'
+      read-write: true
+    dimensions:
+    - layer2_1_conv3_G
+    - layer2_1_conv3_C
+    - layer2_1_conv3_M
+    - layer2_1_conv3_R
+    - layer2_1_conv3_S
+    - layer2_1_conv3_N
+    - layer2_1_conv3_P
+    - layer2_1_conv3_Q
+    name: layer2_1_conv3
+- instance: 0 <= A < 2 and 0 <= B < 512 and 0 <= C < 28 and 0 <= D < 28
+  shape:
+    data-spaces:
+    - name: layer2_1_conv3_out
+      projection: '[ A, B, C, D ]'
+    - name: add_3_out
+      projection: '[ A, B, C, D ]'
+    - name: add_4_out
+      projection: '[ A, B, C, D ]'
+      read-write: true
+    dimensions:
+    - A
+    - B
+    - C
+    - D
+    name: add_4
+- instance: 0 <= layer2_2_conv1_G < 1 and 0 <= layer2_2_conv1_C < 512 and 0 <= layer2_2_conv1_M
+    < 128 and 0 <= layer2_2_conv1_N < 2 and 0 <= layer2_2_conv1_P < 28 and 0 <= layer2_2_conv1_Q
+    < 28 and 0 <= layer2_2_conv1_R < 1 and 0 <= layer2_2_conv1_S < 1
+  shape:
+    data-spaces:
+    - name: layer2_2_conv1_filter
+      projection: '[ layer2_2_conv1_G, layer2_2_conv1_C, layer2_2_conv1_M, layer2_2_conv1_R,
+        layer2_2_conv1_S ]'
+    - name: add_4_out
+      projection: '[ layer2_2_conv1_N, layer2_2_conv1_G*512 + layer2_2_conv1_C, layer2_2_conv1_R
+        + layer2_2_conv1_P*1,  layer2_2_conv1_S + layer2_2_conv1_Q*1 ]'
+    - name: layer2_2_conv1_out
+      projection: '[ layer2_2_conv1_N, layer2_2_conv1_G*128 + layer2_2_conv1_M, layer2_2_conv1_P,
+        layer2_2_conv1_Q ]'
+      read-write: true
+    dimensions:
+    - layer2_2_conv1_G
+    - layer2_2_conv1_C
+    - layer2_2_conv1_M
+    - layer2_2_conv1_R
+    - layer2_2_conv1_S
+    - layer2_2_conv1_N
+    - layer2_2_conv1_P
+    - layer2_2_conv1_Q
+    name: layer2_2_conv1
+- instance: 0 <= layer2_2_conv2_G < 1 and 0 <= layer2_2_conv2_C < 128 and 0 <= layer2_2_conv2_M
+    < 128 and 0 <= layer2_2_conv2_N < 2 and 0 <= layer2_2_conv2_P < 28 and 0 <= layer2_2_conv2_Q
+    < 28 and 0 <= layer2_2_conv2_R < 3 and 0 <= layer2_2_conv2_S < 3
+  shape:
+    data-spaces:
+    - name: layer2_2_conv2_filter
+      projection: '[ layer2_2_conv2_G, layer2_2_conv2_C, layer2_2_conv2_M, layer2_2_conv2_R,
+        layer2_2_conv2_S ]'
+    - name: layer2_2_conv1_out
+      projection: '[ layer2_2_conv2_N, layer2_2_conv2_G*128 + layer2_2_conv2_C, layer2_2_conv2_R
+        + layer2_2_conv2_P*1,  layer2_2_conv2_S + layer2_2_conv2_Q*1 ]'
+    - name: layer2_2_conv2_out
+      projection: '[ layer2_2_conv2_N, layer2_2_conv2_G*128 + layer2_2_conv2_M, layer2_2_conv2_P,
+        layer2_2_conv2_Q ]'
+      read-write: true
+    dimensions:
+    - layer2_2_conv2_G
+    - layer2_2_conv2_C
+    - layer2_2_conv2_M
+    - layer2_2_conv2_R
+    - layer2_2_conv2_S
+    - layer2_2_conv2_N
+    - layer2_2_conv2_P
+    - layer2_2_conv2_Q
+    name: layer2_2_conv2
+- instance: 0 <= layer2_2_conv3_G < 1 and 0 <= layer2_2_conv3_C < 128 and 0 <= layer2_2_conv3_M
+    < 512 and 0 <= layer2_2_conv3_N < 2 and 0 <= layer2_2_conv3_P < 28 and 0 <= layer2_2_conv3_Q
+    < 28 and 0 <= layer2_2_conv3_R < 1 and 0 <= layer2_2_conv3_S < 1
+  shape:
+    data-spaces:
+    - name: layer2_2_conv3_filter
+      projection: '[ layer2_2_conv3_G, layer2_2_conv3_C, layer2_2_conv3_M, layer2_2_conv3_R,
+        layer2_2_conv3_S ]'
+    - name: layer2_2_conv2_out
+      projection: '[ layer2_2_conv3_N, layer2_2_conv3_G*128 + layer2_2_conv3_C, layer2_2_conv3_R
+        + layer2_2_conv3_P*1,  layer2_2_conv3_S + layer2_2_conv3_Q*1 ]'
+    - name: layer2_2_conv3_out
+      projection: '[ layer2_2_conv3_N, layer2_2_conv3_G*512 + layer2_2_conv3_M, layer2_2_conv3_P,
+        layer2_2_conv3_Q ]'
+      read-write: true
+    dimensions:
+    - layer2_2_conv3_G
+    - layer2_2_conv3_C
+    - layer2_2_conv3_M
+    - layer2_2_conv3_R
+    - layer2_2_conv3_S
+    - layer2_2_conv3_N
+    - layer2_2_conv3_P
+    - layer2_2_conv3_Q
+    name: layer2_2_conv3
+- instance: 0 <= A < 2 and 0 <= B < 512 and 0 <= C < 28 and 0 <= D < 28
+  shape:
+    data-spaces:
+    - name: layer2_2_conv3_out
+      projection: '[ A, B, C, D ]'
+    - name: add_4_out
+      projection: '[ A, B, C, D ]'
+    - name: add_5_out
+      projection: '[ A, B, C, D ]'
+      read-write: true
+    dimensions:
+    - A
+    - B
+    - C
+    - D
+    name: add_5
+- instance: 0 <= layer2_3_conv1_G < 1 and 0 <= layer2_3_conv1_C < 512 and 0 <= layer2_3_conv1_M
+    < 128 and 0 <= layer2_3_conv1_N < 2 and 0 <= layer2_3_conv1_P < 28 and 0 <= layer2_3_conv1_Q
+    < 28 and 0 <= layer2_3_conv1_R < 1 and 0 <= layer2_3_conv1_S < 1
+  shape:
+    data-spaces:
+    - name: layer2_3_conv1_filter
+      projection: '[ layer2_3_conv1_G, layer2_3_conv1_C, layer2_3_conv1_M, layer2_3_conv1_R,
+        layer2_3_conv1_S ]'
+    - name: add_5_out
+      projection: '[ layer2_3_conv1_N, layer2_3_conv1_G*512 + layer2_3_conv1_C, layer2_3_conv1_R
+        + layer2_3_conv1_P*1,  layer2_3_conv1_S + layer2_3_conv1_Q*1 ]'
+    - name: layer2_3_conv1_out
+      projection: '[ layer2_3_conv1_N, layer2_3_conv1_G*128 + layer2_3_conv1_M, layer2_3_conv1_P,
+        layer2_3_conv1_Q ]'
+      read-write: true
+    dimensions:
+    - layer2_3_conv1_G
+    - layer2_3_conv1_C
+    - layer2_3_conv1_M
+    - layer2_3_conv1_R
+    - layer2_3_conv1_S
+    - layer2_3_conv1_N
+    - layer2_3_conv1_P
+    - layer2_3_conv1_Q
+    name: layer2_3_conv1
+- instance: 0 <= layer2_3_conv2_G < 1 and 0 <= layer2_3_conv2_C < 128 and 0 <= layer2_3_conv2_M
+    < 128 and 0 <= layer2_3_conv2_N < 2 and 0 <= layer2_3_conv2_P < 28 and 0 <= layer2_3_conv2_Q
+    < 28 and 0 <= layer2_3_conv2_R < 3 and 0 <= layer2_3_conv2_S < 3
+  shape:
+    data-spaces:
+    - name: layer2_3_conv2_filter
+      projection: '[ layer2_3_conv2_G, layer2_3_conv2_C, layer2_3_conv2_M, layer2_3_conv2_R,
+        layer2_3_conv2_S ]'
+    - name: layer2_3_conv1_out
+      projection: '[ layer2_3_conv2_N, layer2_3_conv2_G*128 + layer2_3_conv2_C, layer2_3_conv2_R
+        + layer2_3_conv2_P*1,  layer2_3_conv2_S + layer2_3_conv2_Q*1 ]'
+    - name: layer2_3_conv2_out
+      projection: '[ layer2_3_conv2_N, layer2_3_conv2_G*128 + layer2_3_conv2_M, layer2_3_conv2_P,
+        layer2_3_conv2_Q ]'
+      read-write: true
+    dimensions:
+    - layer2_3_conv2_G
+    - layer2_3_conv2_C
+    - layer2_3_conv2_M
+    - layer2_3_conv2_R
+    - layer2_3_conv2_S
+    - layer2_3_conv2_N
+    - layer2_3_conv2_P
+    - layer2_3_conv2_Q
+    name: layer2_3_conv2
+- instance: 0 <= layer2_3_conv3_G < 1 and 0 <= layer2_3_conv3_C < 128 and 0 <= layer2_3_conv3_M
+    < 512 and 0 <= layer2_3_conv3_N < 2 and 0 <= layer2_3_conv3_P < 28 and 0 <= layer2_3_conv3_Q
+    < 28 and 0 <= layer2_3_conv3_R < 1 and 0 <= layer2_3_conv3_S < 1
+  shape:
+    data-spaces:
+    - name: layer2_3_conv3_filter
+      projection: '[ layer2_3_conv3_G, layer2_3_conv3_C, layer2_3_conv3_M, layer2_3_conv3_R,
+        layer2_3_conv3_S ]'
+    - name: layer2_3_conv2_out
+      projection: '[ layer2_3_conv3_N, layer2_3_conv3_G*128 + layer2_3_conv3_C, layer2_3_conv3_R
+        + layer2_3_conv3_P*1,  layer2_3_conv3_S + layer2_3_conv3_Q*1 ]'
+    - name: layer2_3_conv3_out
+      projection: '[ layer2_3_conv3_N, layer2_3_conv3_G*512 + layer2_3_conv3_M, layer2_3_conv3_P,
+        layer2_3_conv3_Q ]'
+      read-write: true
+    dimensions:
+    - layer2_3_conv3_G
+    - layer2_3_conv3_C
+    - layer2_3_conv3_M
+    - layer2_3_conv3_R
+    - layer2_3_conv3_S
+    - layer2_3_conv3_N
+    - layer2_3_conv3_P
+    - layer2_3_conv3_Q
+    name: layer2_3_conv3
+- instance: 0 <= A < 2 and 0 <= B < 512 and 0 <= C < 28 and 0 <= D < 28
+  shape:
+    data-spaces:
+    - name: layer2_3_conv3_out
+      projection: '[ A, B, C, D ]'
+    - name: add_5_out
+      projection: '[ A, B, C, D ]'
+    - name: add_6_out
+      projection: '[ A, B, C, D ]'
+      read-write: true
+    dimensions:
+    - A
+    - B
+    - C
+    - D
+    name: add_6
+- instance: 0 <= layer3_0_conv1_G < 1 and 0 <= layer3_0_conv1_C < 512 and 0 <= layer3_0_conv1_M
+    < 256 and 0 <= layer3_0_conv1_N < 2 and 0 <= layer3_0_conv1_P < 28 and 0 <= layer3_0_conv1_Q
+    < 28 and 0 <= layer3_0_conv1_R < 1 and 0 <= layer3_0_conv1_S < 1
+  shape:
+    data-spaces:
+    - name: layer3_0_conv1_filter
+      projection: '[ layer3_0_conv1_G, layer3_0_conv1_C, layer3_0_conv1_M, layer3_0_conv1_R,
+        layer3_0_conv1_S ]'
+    - name: add_6_out
+      projection: '[ layer3_0_conv1_N, layer3_0_conv1_G*512 + layer3_0_conv1_C, layer3_0_conv1_R
+        + layer3_0_conv1_P*1,  layer3_0_conv1_S + layer3_0_conv1_Q*1 ]'
+    - name: layer3_0_conv1_out
+      projection: '[ layer3_0_conv1_N, layer3_0_conv1_G*256 + layer3_0_conv1_M, layer3_0_conv1_P,
+        layer3_0_conv1_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_0_conv1_G
+    - layer3_0_conv1_C
+    - layer3_0_conv1_M
+    - layer3_0_conv1_R
+    - layer3_0_conv1_S
+    - layer3_0_conv1_N
+    - layer3_0_conv1_P
+    - layer3_0_conv1_Q
+    name: layer3_0_conv1
+- instance: 0 <= layer3_0_conv2_G < 1 and 0 <= layer3_0_conv2_C < 256 and 0 <= layer3_0_conv2_M
+    < 256 and 0 <= layer3_0_conv2_N < 2 and 0 <= layer3_0_conv2_P < 14 and 0 <= layer3_0_conv2_Q
+    < 14 and 0 <= layer3_0_conv2_R < 3 and 0 <= layer3_0_conv2_S < 3
+  shape:
+    data-spaces:
+    - name: layer3_0_conv2_filter
+      projection: '[ layer3_0_conv2_G, layer3_0_conv2_C, layer3_0_conv2_M, layer3_0_conv2_R,
+        layer3_0_conv2_S ]'
+    - name: layer3_0_conv1_out
+      projection: '[ layer3_0_conv2_N, layer3_0_conv2_G*256 + layer3_0_conv2_C, layer3_0_conv2_R
+        + layer3_0_conv2_P*2,  layer3_0_conv2_S + layer3_0_conv2_Q*2 ]'
+    - name: layer3_0_conv2_out
+      projection: '[ layer3_0_conv2_N, layer3_0_conv2_G*256 + layer3_0_conv2_M, layer3_0_conv2_P,
+        layer3_0_conv2_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_0_conv2_G
+    - layer3_0_conv2_C
+    - layer3_0_conv2_M
+    - layer3_0_conv2_R
+    - layer3_0_conv2_S
+    - layer3_0_conv2_N
+    - layer3_0_conv2_P
+    - layer3_0_conv2_Q
+    name: layer3_0_conv2
+- instance: 0 <= layer3_0_conv3_G < 1 and 0 <= layer3_0_conv3_C < 256 and 0 <= layer3_0_conv3_M
+    < 1024 and 0 <= layer3_0_conv3_N < 2 and 0 <= layer3_0_conv3_P < 14 and 0 <= layer3_0_conv3_Q
+    < 14 and 0 <= layer3_0_conv3_R < 1 and 0 <= layer3_0_conv3_S < 1
+  shape:
+    data-spaces:
+    - name: layer3_0_conv3_filter
+      projection: '[ layer3_0_conv3_G, layer3_0_conv3_C, layer3_0_conv3_M, layer3_0_conv3_R,
+        layer3_0_conv3_S ]'
+    - name: layer3_0_conv2_out
+      projection: '[ layer3_0_conv3_N, layer3_0_conv3_G*256 + layer3_0_conv3_C, layer3_0_conv3_R
+        + layer3_0_conv3_P*1,  layer3_0_conv3_S + layer3_0_conv3_Q*1 ]'
+    - name: layer3_0_conv3_out
+      projection: '[ layer3_0_conv3_N, layer3_0_conv3_G*1024 + layer3_0_conv3_M, layer3_0_conv3_P,
+        layer3_0_conv3_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_0_conv3_G
+    - layer3_0_conv3_C
+    - layer3_0_conv3_M
+    - layer3_0_conv3_R
+    - layer3_0_conv3_S
+    - layer3_0_conv3_N
+    - layer3_0_conv3_P
+    - layer3_0_conv3_Q
+    name: layer3_0_conv3
+- instance: 0 <= layer3_0_downsample_0_G < 1 and 0 <= layer3_0_downsample_0_C < 512
+    and 0 <= layer3_0_downsample_0_M < 1024 and 0 <= layer3_0_downsample_0_N < 2 and
+    0 <= layer3_0_downsample_0_P < 14 and 0 <= layer3_0_downsample_0_Q < 14 and 0
+    <= layer3_0_downsample_0_R < 1 and 0 <= layer3_0_downsample_0_S < 1
+  shape:
+    data-spaces:
+    - name: layer3_0_downsample_0_filter
+      projection: '[ layer3_0_downsample_0_G, layer3_0_downsample_0_C, layer3_0_downsample_0_M,
+        layer3_0_downsample_0_R, layer3_0_downsample_0_S ]'
+    - name: add_6_out
+      projection: '[ layer3_0_downsample_0_N, layer3_0_downsample_0_G*512 + layer3_0_downsample_0_C,
+        layer3_0_downsample_0_R + layer3_0_downsample_0_P*2,  layer3_0_downsample_0_S
+        + layer3_0_downsample_0_Q*2 ]'
+    - name: layer3_0_downsample_0_out
+      projection: '[ layer3_0_downsample_0_N, layer3_0_downsample_0_G*1024 + layer3_0_downsample_0_M,
+        layer3_0_downsample_0_P, layer3_0_downsample_0_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_0_downsample_0_G
+    - layer3_0_downsample_0_C
+    - layer3_0_downsample_0_M
+    - layer3_0_downsample_0_R
+    - layer3_0_downsample_0_S
+    - layer3_0_downsample_0_N
+    - layer3_0_downsample_0_P
+    - layer3_0_downsample_0_Q
+    name: layer3_0_downsample_0
+- instance: 0 <= A < 2 and 0 <= B < 1024 and 0 <= C < 14 and 0 <= D < 14
+  shape:
+    data-spaces:
+    - name: layer3_0_conv3_out
+      projection: '[ A, B, C, D ]'
+    - name: layer3_0_downsample_0_out
+      projection: '[ A, B, C, D ]'
+    - name: add_7_out
+      projection: '[ A, B, C, D ]'
+      read-write: true
+    dimensions:
+    - A
+    - B
+    - C
+    - D
+    name: add_7
+- instance: 0 <= layer3_1_conv1_G < 1 and 0 <= layer3_1_conv1_C < 1024 and 0 <= layer3_1_conv1_M
+    < 256 and 0 <= layer3_1_conv1_N < 2 and 0 <= layer3_1_conv1_P < 14 and 0 <= layer3_1_conv1_Q
+    < 14 and 0 <= layer3_1_conv1_R < 1 and 0 <= layer3_1_conv1_S < 1
+  shape:
+    data-spaces:
+    - name: layer3_1_conv1_filter
+      projection: '[ layer3_1_conv1_G, layer3_1_conv1_C, layer3_1_conv1_M, layer3_1_conv1_R,
+        layer3_1_conv1_S ]'
+    - name: add_7_out
+      projection: '[ layer3_1_conv1_N, layer3_1_conv1_G*1024 + layer3_1_conv1_C, layer3_1_conv1_R
+        + layer3_1_conv1_P*1,  layer3_1_conv1_S + layer3_1_conv1_Q*1 ]'
+    - name: layer3_1_conv1_out
+      projection: '[ layer3_1_conv1_N, layer3_1_conv1_G*256 + layer3_1_conv1_M, layer3_1_conv1_P,
+        layer3_1_conv1_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_1_conv1_G
+    - layer3_1_conv1_C
+    - layer3_1_conv1_M
+    - layer3_1_conv1_R
+    - layer3_1_conv1_S
+    - layer3_1_conv1_N
+    - layer3_1_conv1_P
+    - layer3_1_conv1_Q
+    name: layer3_1_conv1
+- instance: 0 <= layer3_1_conv2_G < 1 and 0 <= layer3_1_conv2_C < 256 and 0 <= layer3_1_conv2_M
+    < 256 and 0 <= layer3_1_conv2_N < 2 and 0 <= layer3_1_conv2_P < 14 and 0 <= layer3_1_conv2_Q
+    < 14 and 0 <= layer3_1_conv2_R < 3 and 0 <= layer3_1_conv2_S < 3
+  shape:
+    data-spaces:
+    - name: layer3_1_conv2_filter
+      projection: '[ layer3_1_conv2_G, layer3_1_conv2_C, layer3_1_conv2_M, layer3_1_conv2_R,
+        layer3_1_conv2_S ]'
+    - name: layer3_1_conv1_out
+      projection: '[ layer3_1_conv2_N, layer3_1_conv2_G*256 + layer3_1_conv2_C, layer3_1_conv2_R
+        + layer3_1_conv2_P*1,  layer3_1_conv2_S + layer3_1_conv2_Q*1 ]'
+    - name: layer3_1_conv2_out
+      projection: '[ layer3_1_conv2_N, layer3_1_conv2_G*256 + layer3_1_conv2_M, layer3_1_conv2_P,
+        layer3_1_conv2_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_1_conv2_G
+    - layer3_1_conv2_C
+    - layer3_1_conv2_M
+    - layer3_1_conv2_R
+    - layer3_1_conv2_S
+    - layer3_1_conv2_N
+    - layer3_1_conv2_P
+    - layer3_1_conv2_Q
+    name: layer3_1_conv2
+- instance: 0 <= layer3_1_conv3_G < 1 and 0 <= layer3_1_conv3_C < 256 and 0 <= layer3_1_conv3_M
+    < 1024 and 0 <= layer3_1_conv3_N < 2 and 0 <= layer3_1_conv3_P < 14 and 0 <= layer3_1_conv3_Q
+    < 14 and 0 <= layer3_1_conv3_R < 1 and 0 <= layer3_1_conv3_S < 1
+  shape:
+    data-spaces:
+    - name: layer3_1_conv3_filter
+      projection: '[ layer3_1_conv3_G, layer3_1_conv3_C, layer3_1_conv3_M, layer3_1_conv3_R,
+        layer3_1_conv3_S ]'
+    - name: layer3_1_conv2_out
+      projection: '[ layer3_1_conv3_N, layer3_1_conv3_G*256 + layer3_1_conv3_C, layer3_1_conv3_R
+        + layer3_1_conv3_P*1,  layer3_1_conv3_S + layer3_1_conv3_Q*1 ]'
+    - name: layer3_1_conv3_out
+      projection: '[ layer3_1_conv3_N, layer3_1_conv3_G*1024 + layer3_1_conv3_M, layer3_1_conv3_P,
+        layer3_1_conv3_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_1_conv3_G
+    - layer3_1_conv3_C
+    - layer3_1_conv3_M
+    - layer3_1_conv3_R
+    - layer3_1_conv3_S
+    - layer3_1_conv3_N
+    - layer3_1_conv3_P
+    - layer3_1_conv3_Q
+    name: layer3_1_conv3
+- instance: 0 <= A < 2 and 0 <= B < 1024 and 0 <= C < 14 and 0 <= D < 14
+  shape:
+    data-spaces:
+    - name: layer3_1_conv3_out
+      projection: '[ A, B, C, D ]'
+    - name: add_7_out
+      projection: '[ A, B, C, D ]'
+    - name: add_8_out
+      projection: '[ A, B, C, D ]'
+      read-write: true
+    dimensions:
+    - A
+    - B
+    - C
+    - D
+    name: add_8
+- instance: 0 <= layer3_2_conv1_G < 1 and 0 <= layer3_2_conv1_C < 1024 and 0 <= layer3_2_conv1_M
+    < 256 and 0 <= layer3_2_conv1_N < 2 and 0 <= layer3_2_conv1_P < 14 and 0 <= layer3_2_conv1_Q
+    < 14 and 0 <= layer3_2_conv1_R < 1 and 0 <= layer3_2_conv1_S < 1
+  shape:
+    data-spaces:
+    - name: layer3_2_conv1_filter
+      projection: '[ layer3_2_conv1_G, layer3_2_conv1_C, layer3_2_conv1_M, layer3_2_conv1_R,
+        layer3_2_conv1_S ]'
+    - name: add_8_out
+      projection: '[ layer3_2_conv1_N, layer3_2_conv1_G*1024 + layer3_2_conv1_C, layer3_2_conv1_R
+        + layer3_2_conv1_P*1,  layer3_2_conv1_S + layer3_2_conv1_Q*1 ]'
+    - name: layer3_2_conv1_out
+      projection: '[ layer3_2_conv1_N, layer3_2_conv1_G*256 + layer3_2_conv1_M, layer3_2_conv1_P,
+        layer3_2_conv1_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_2_conv1_G
+    - layer3_2_conv1_C
+    - layer3_2_conv1_M
+    - layer3_2_conv1_R
+    - layer3_2_conv1_S
+    - layer3_2_conv1_N
+    - layer3_2_conv1_P
+    - layer3_2_conv1_Q
+    name: layer3_2_conv1
+- instance: 0 <= layer3_2_conv2_G < 1 and 0 <= layer3_2_conv2_C < 256 and 0 <= layer3_2_conv2_M
+    < 256 and 0 <= layer3_2_conv2_N < 2 and 0 <= layer3_2_conv2_P < 14 and 0 <= layer3_2_conv2_Q
+    < 14 and 0 <= layer3_2_conv2_R < 3 and 0 <= layer3_2_conv2_S < 3
+  shape:
+    data-spaces:
+    - name: layer3_2_conv2_filter
+      projection: '[ layer3_2_conv2_G, layer3_2_conv2_C, layer3_2_conv2_M, layer3_2_conv2_R,
+        layer3_2_conv2_S ]'
+    - name: layer3_2_conv1_out
+      projection: '[ layer3_2_conv2_N, layer3_2_conv2_G*256 + layer3_2_conv2_C, layer3_2_conv2_R
+        + layer3_2_conv2_P*1,  layer3_2_conv2_S + layer3_2_conv2_Q*1 ]'
+    - name: layer3_2_conv2_out
+      projection: '[ layer3_2_conv2_N, layer3_2_conv2_G*256 + layer3_2_conv2_M, layer3_2_conv2_P,
+        layer3_2_conv2_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_2_conv2_G
+    - layer3_2_conv2_C
+    - layer3_2_conv2_M
+    - layer3_2_conv2_R
+    - layer3_2_conv2_S
+    - layer3_2_conv2_N
+    - layer3_2_conv2_P
+    - layer3_2_conv2_Q
+    name: layer3_2_conv2
+- instance: 0 <= layer3_2_conv3_G < 1 and 0 <= layer3_2_conv3_C < 256 and 0 <= layer3_2_conv3_M
+    < 1024 and 0 <= layer3_2_conv3_N < 2 and 0 <= layer3_2_conv3_P < 14 and 0 <= layer3_2_conv3_Q
+    < 14 and 0 <= layer3_2_conv3_R < 1 and 0 <= layer3_2_conv3_S < 1
+  shape:
+    data-spaces:
+    - name: layer3_2_conv3_filter
+      projection: '[ layer3_2_conv3_G, layer3_2_conv3_C, layer3_2_conv3_M, layer3_2_conv3_R,
+        layer3_2_conv3_S ]'
+    - name: layer3_2_conv2_out
+      projection: '[ layer3_2_conv3_N, layer3_2_conv3_G*256 + layer3_2_conv3_C, layer3_2_conv3_R
+        + layer3_2_conv3_P*1,  layer3_2_conv3_S + layer3_2_conv3_Q*1 ]'
+    - name: layer3_2_conv3_out
+      projection: '[ layer3_2_conv3_N, layer3_2_conv3_G*1024 + layer3_2_conv3_M, layer3_2_conv3_P,
+        layer3_2_conv3_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_2_conv3_G
+    - layer3_2_conv3_C
+    - layer3_2_conv3_M
+    - layer3_2_conv3_R
+    - layer3_2_conv3_S
+    - layer3_2_conv3_N
+    - layer3_2_conv3_P
+    - layer3_2_conv3_Q
+    name: layer3_2_conv3
+- instance: 0 <= A < 2 and 0 <= B < 1024 and 0 <= C < 14 and 0 <= D < 14
+  shape:
+    data-spaces:
+    - name: layer3_2_conv3_out
+      projection: '[ A, B, C, D ]'
+    - name: add_8_out
+      projection: '[ A, B, C, D ]'
+    - name: add_9_out
+      projection: '[ A, B, C, D ]'
+      read-write: true
+    dimensions:
+    - A
+    - B
+    - C
+    - D
+    name: add_9
+- instance: 0 <= layer3_3_conv1_G < 1 and 0 <= layer3_3_conv1_C < 1024 and 0 <= layer3_3_conv1_M
+    < 256 and 0 <= layer3_3_conv1_N < 2 and 0 <= layer3_3_conv1_P < 14 and 0 <= layer3_3_conv1_Q
+    < 14 and 0 <= layer3_3_conv1_R < 1 and 0 <= layer3_3_conv1_S < 1
+  shape:
+    data-spaces:
+    - name: layer3_3_conv1_filter
+      projection: '[ layer3_3_conv1_G, layer3_3_conv1_C, layer3_3_conv1_M, layer3_3_conv1_R,
+        layer3_3_conv1_S ]'
+    - name: add_9_out
+      projection: '[ layer3_3_conv1_N, layer3_3_conv1_G*1024 + layer3_3_conv1_C, layer3_3_conv1_R
+        + layer3_3_conv1_P*1,  layer3_3_conv1_S + layer3_3_conv1_Q*1 ]'
+    - name: layer3_3_conv1_out
+      projection: '[ layer3_3_conv1_N, layer3_3_conv1_G*256 + layer3_3_conv1_M, layer3_3_conv1_P,
+        layer3_3_conv1_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_3_conv1_G
+    - layer3_3_conv1_C
+    - layer3_3_conv1_M
+    - layer3_3_conv1_R
+    - layer3_3_conv1_S
+    - layer3_3_conv1_N
+    - layer3_3_conv1_P
+    - layer3_3_conv1_Q
+    name: layer3_3_conv1
+- instance: 0 <= layer3_3_conv2_G < 1 and 0 <= layer3_3_conv2_C < 256 and 0 <= layer3_3_conv2_M
+    < 256 and 0 <= layer3_3_conv2_N < 2 and 0 <= layer3_3_conv2_P < 14 and 0 <= layer3_3_conv2_Q
+    < 14 and 0 <= layer3_3_conv2_R < 3 and 0 <= layer3_3_conv2_S < 3
+  shape:
+    data-spaces:
+    - name: layer3_3_conv2_filter
+      projection: '[ layer3_3_conv2_G, layer3_3_conv2_C, layer3_3_conv2_M, layer3_3_conv2_R,
+        layer3_3_conv2_S ]'
+    - name: layer3_3_conv1_out
+      projection: '[ layer3_3_conv2_N, layer3_3_conv2_G*256 + layer3_3_conv2_C, layer3_3_conv2_R
+        + layer3_3_conv2_P*1,  layer3_3_conv2_S + layer3_3_conv2_Q*1 ]'
+    - name: layer3_3_conv2_out
+      projection: '[ layer3_3_conv2_N, layer3_3_conv2_G*256 + layer3_3_conv2_M, layer3_3_conv2_P,
+        layer3_3_conv2_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_3_conv2_G
+    - layer3_3_conv2_C
+    - layer3_3_conv2_M
+    - layer3_3_conv2_R
+    - layer3_3_conv2_S
+    - layer3_3_conv2_N
+    - layer3_3_conv2_P
+    - layer3_3_conv2_Q
+    name: layer3_3_conv2
+- instance: 0 <= layer3_3_conv3_G < 1 and 0 <= layer3_3_conv3_C < 256 and 0 <= layer3_3_conv3_M
+    < 1024 and 0 <= layer3_3_conv3_N < 2 and 0 <= layer3_3_conv3_P < 14 and 0 <= layer3_3_conv3_Q
+    < 14 and 0 <= layer3_3_conv3_R < 1 and 0 <= layer3_3_conv3_S < 1
+  shape:
+    data-spaces:
+    - name: layer3_3_conv3_filter
+      projection: '[ layer3_3_conv3_G, layer3_3_conv3_C, layer3_3_conv3_M, layer3_3_conv3_R,
+        layer3_3_conv3_S ]'
+    - name: layer3_3_conv2_out
+      projection: '[ layer3_3_conv3_N, layer3_3_conv3_G*256 + layer3_3_conv3_C, layer3_3_conv3_R
+        + layer3_3_conv3_P*1,  layer3_3_conv3_S + layer3_3_conv3_Q*1 ]'
+    - name: layer3_3_conv3_out
+      projection: '[ layer3_3_conv3_N, layer3_3_conv3_G*1024 + layer3_3_conv3_M, layer3_3_conv3_P,
+        layer3_3_conv3_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_3_conv3_G
+    - layer3_3_conv3_C
+    - layer3_3_conv3_M
+    - layer3_3_conv3_R
+    - layer3_3_conv3_S
+    - layer3_3_conv3_N
+    - layer3_3_conv3_P
+    - layer3_3_conv3_Q
+    name: layer3_3_conv3
+- instance: 0 <= A < 2 and 0 <= B < 1024 and 0 <= C < 14 and 0 <= D < 14
+  shape:
+    data-spaces:
+    - name: layer3_3_conv3_out
+      projection: '[ A, B, C, D ]'
+    - name: add_9_out
+      projection: '[ A, B, C, D ]'
+    - name: add_10_out
+      projection: '[ A, B, C, D ]'
+      read-write: true
+    dimensions:
+    - A
+    - B
+    - C
+    - D
+    name: add_10
+- instance: 0 <= layer3_4_conv1_G < 1 and 0 <= layer3_4_conv1_C < 1024 and 0 <= layer3_4_conv1_M
+    < 256 and 0 <= layer3_4_conv1_N < 2 and 0 <= layer3_4_conv1_P < 14 and 0 <= layer3_4_conv1_Q
+    < 14 and 0 <= layer3_4_conv1_R < 1 and 0 <= layer3_4_conv1_S < 1
+  shape:
+    data-spaces:
+    - name: layer3_4_conv1_filter
+      projection: '[ layer3_4_conv1_G, layer3_4_conv1_C, layer3_4_conv1_M, layer3_4_conv1_R,
+        layer3_4_conv1_S ]'
+    - name: add_10_out
+      projection: '[ layer3_4_conv1_N, layer3_4_conv1_G*1024 + layer3_4_conv1_C, layer3_4_conv1_R
+        + layer3_4_conv1_P*1,  layer3_4_conv1_S + layer3_4_conv1_Q*1 ]'
+    - name: layer3_4_conv1_out
+      projection: '[ layer3_4_conv1_N, layer3_4_conv1_G*256 + layer3_4_conv1_M, layer3_4_conv1_P,
+        layer3_4_conv1_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_4_conv1_G
+    - layer3_4_conv1_C
+    - layer3_4_conv1_M
+    - layer3_4_conv1_R
+    - layer3_4_conv1_S
+    - layer3_4_conv1_N
+    - layer3_4_conv1_P
+    - layer3_4_conv1_Q
+    name: layer3_4_conv1
+- instance: 0 <= layer3_4_conv2_G < 1 and 0 <= layer3_4_conv2_C < 256 and 0 <= layer3_4_conv2_M
+    < 256 and 0 <= layer3_4_conv2_N < 2 and 0 <= layer3_4_conv2_P < 14 and 0 <= layer3_4_conv2_Q
+    < 14 and 0 <= layer3_4_conv2_R < 3 and 0 <= layer3_4_conv2_S < 3
+  shape:
+    data-spaces:
+    - name: layer3_4_conv2_filter
+      projection: '[ layer3_4_conv2_G, layer3_4_conv2_C, layer3_4_conv2_M, layer3_4_conv2_R,
+        layer3_4_conv2_S ]'
+    - name: layer3_4_conv1_out
+      projection: '[ layer3_4_conv2_N, layer3_4_conv2_G*256 + layer3_4_conv2_C, layer3_4_conv2_R
+        + layer3_4_conv2_P*1,  layer3_4_conv2_S + layer3_4_conv2_Q*1 ]'
+    - name: layer3_4_conv2_out
+      projection: '[ layer3_4_conv2_N, layer3_4_conv2_G*256 + layer3_4_conv2_M, layer3_4_conv2_P,
+        layer3_4_conv2_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_4_conv2_G
+    - layer3_4_conv2_C
+    - layer3_4_conv2_M
+    - layer3_4_conv2_R
+    - layer3_4_conv2_S
+    - layer3_4_conv2_N
+    - layer3_4_conv2_P
+    - layer3_4_conv2_Q
+    name: layer3_4_conv2
+- instance: 0 <= layer3_4_conv3_G < 1 and 0 <= layer3_4_conv3_C < 256 and 0 <= layer3_4_conv3_M
+    < 1024 and 0 <= layer3_4_conv3_N < 2 and 0 <= layer3_4_conv3_P < 14 and 0 <= layer3_4_conv3_Q
+    < 14 and 0 <= layer3_4_conv3_R < 1 and 0 <= layer3_4_conv3_S < 1
+  shape:
+    data-spaces:
+    - name: layer3_4_conv3_filter
+      projection: '[ layer3_4_conv3_G, layer3_4_conv3_C, layer3_4_conv3_M, layer3_4_conv3_R,
+        layer3_4_conv3_S ]'
+    - name: layer3_4_conv2_out
+      projection: '[ layer3_4_conv3_N, layer3_4_conv3_G*256 + layer3_4_conv3_C, layer3_4_conv3_R
+        + layer3_4_conv3_P*1,  layer3_4_conv3_S + layer3_4_conv3_Q*1 ]'
+    - name: layer3_4_conv3_out
+      projection: '[ layer3_4_conv3_N, layer3_4_conv3_G*1024 + layer3_4_conv3_M, layer3_4_conv3_P,
+        layer3_4_conv3_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_4_conv3_G
+    - layer3_4_conv3_C
+    - layer3_4_conv3_M
+    - layer3_4_conv3_R
+    - layer3_4_conv3_S
+    - layer3_4_conv3_N
+    - layer3_4_conv3_P
+    - layer3_4_conv3_Q
+    name: layer3_4_conv3
+- instance: 0 <= A < 2 and 0 <= B < 1024 and 0 <= C < 14 and 0 <= D < 14
+  shape:
+    data-spaces:
+    - name: layer3_4_conv3_out
+      projection: '[ A, B, C, D ]'
+    - name: add_10_out
+      projection: '[ A, B, C, D ]'
+    - name: add_11_out
+      projection: '[ A, B, C, D ]'
+      read-write: true
+    dimensions:
+    - A
+    - B
+    - C
+    - D
+    name: add_11
+- instance: 0 <= layer3_5_conv1_G < 1 and 0 <= layer3_5_conv1_C < 1024 and 0 <= layer3_5_conv1_M
+    < 256 and 0 <= layer3_5_conv1_N < 2 and 0 <= layer3_5_conv1_P < 14 and 0 <= layer3_5_conv1_Q
+    < 14 and 0 <= layer3_5_conv1_R < 1 and 0 <= layer3_5_conv1_S < 1
+  shape:
+    data-spaces:
+    - name: layer3_5_conv1_filter
+      projection: '[ layer3_5_conv1_G, layer3_5_conv1_C, layer3_5_conv1_M, layer3_5_conv1_R,
+        layer3_5_conv1_S ]'
+    - name: add_11_out
+      projection: '[ layer3_5_conv1_N, layer3_5_conv1_G*1024 + layer3_5_conv1_C, layer3_5_conv1_R
+        + layer3_5_conv1_P*1,  layer3_5_conv1_S + layer3_5_conv1_Q*1 ]'
+    - name: layer3_5_conv1_out
+      projection: '[ layer3_5_conv1_N, layer3_5_conv1_G*256 + layer3_5_conv1_M, layer3_5_conv1_P,
+        layer3_5_conv1_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_5_conv1_G
+    - layer3_5_conv1_C
+    - layer3_5_conv1_M
+    - layer3_5_conv1_R
+    - layer3_5_conv1_S
+    - layer3_5_conv1_N
+    - layer3_5_conv1_P
+    - layer3_5_conv1_Q
+    name: layer3_5_conv1
+- instance: 0 <= layer3_5_conv2_G < 1 and 0 <= layer3_5_conv2_C < 256 and 0 <= layer3_5_conv2_M
+    < 256 and 0 <= layer3_5_conv2_N < 2 and 0 <= layer3_5_conv2_P < 14 and 0 <= layer3_5_conv2_Q
+    < 14 and 0 <= layer3_5_conv2_R < 3 and 0 <= layer3_5_conv2_S < 3
+  shape:
+    data-spaces:
+    - name: layer3_5_conv2_filter
+      projection: '[ layer3_5_conv2_G, layer3_5_conv2_C, layer3_5_conv2_M, layer3_5_conv2_R,
+        layer3_5_conv2_S ]'
+    - name: layer3_5_conv1_out
+      projection: '[ layer3_5_conv2_N, layer3_5_conv2_G*256 + layer3_5_conv2_C, layer3_5_conv2_R
+        + layer3_5_conv2_P*1,  layer3_5_conv2_S + layer3_5_conv2_Q*1 ]'
+    - name: layer3_5_conv2_out
+      projection: '[ layer3_5_conv2_N, layer3_5_conv2_G*256 + layer3_5_conv2_M, layer3_5_conv2_P,
+        layer3_5_conv2_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_5_conv2_G
+    - layer3_5_conv2_C
+    - layer3_5_conv2_M
+    - layer3_5_conv2_R
+    - layer3_5_conv2_S
+    - layer3_5_conv2_N
+    - layer3_5_conv2_P
+    - layer3_5_conv2_Q
+    name: layer3_5_conv2
+- instance: 0 <= layer3_5_conv3_G < 1 and 0 <= layer3_5_conv3_C < 256 and 0 <= layer3_5_conv3_M
+    < 1024 and 0 <= layer3_5_conv3_N < 2 and 0 <= layer3_5_conv3_P < 14 and 0 <= layer3_5_conv3_Q
+    < 14 and 0 <= layer3_5_conv3_R < 1 and 0 <= layer3_5_conv3_S < 1
+  shape:
+    data-spaces:
+    - name: layer3_5_conv3_filter
+      projection: '[ layer3_5_conv3_G, layer3_5_conv3_C, layer3_5_conv3_M, layer3_5_conv3_R,
+        layer3_5_conv3_S ]'
+    - name: layer3_5_conv2_out
+      projection: '[ layer3_5_conv3_N, layer3_5_conv3_G*256 + layer3_5_conv3_C, layer3_5_conv3_R
+        + layer3_5_conv3_P*1,  layer3_5_conv3_S + layer3_5_conv3_Q*1 ]'
+    - name: layer3_5_conv3_out
+      projection: '[ layer3_5_conv3_N, layer3_5_conv3_G*1024 + layer3_5_conv3_M, layer3_5_conv3_P,
+        layer3_5_conv3_Q ]'
+      read-write: true
+    dimensions:
+    - layer3_5_conv3_G
+    - layer3_5_conv3_C
+    - layer3_5_conv3_M
+    - layer3_5_conv3_R
+    - layer3_5_conv3_S
+    - layer3_5_conv3_N
+    - layer3_5_conv3_P
+    - layer3_5_conv3_Q
+    name: layer3_5_conv3
+- instance: 0 <= A < 2 and 0 <= B < 1024 and 0 <= C < 14 and 0 <= D < 14
+  shape:
+    data-spaces:
+    - name: layer3_5_conv3_out
+      projection: '[ A, B, C, D ]'
+    - name: add_11_out
+      projection: '[ A, B, C, D ]'
+    - name: add_12_out
+      projection: '[ A, B, C, D ]'
+      read-write: true
+    dimensions:
+    - A
+    - B
+    - C
+    - D
+    name: add_12
+- instance: 0 <= layer4_0_conv1_G < 1 and 0 <= layer4_0_conv1_C < 1024 and 0 <= layer4_0_conv1_M
+    < 512 and 0 <= layer4_0_conv1_N < 2 and 0 <= layer4_0_conv1_P < 14 and 0 <= layer4_0_conv1_Q
+    < 14 and 0 <= layer4_0_conv1_R < 1 and 0 <= layer4_0_conv1_S < 1
+  shape:
+    data-spaces:
+    - name: layer4_0_conv1_filter
+      projection: '[ layer4_0_conv1_G, layer4_0_conv1_C, layer4_0_conv1_M, layer4_0_conv1_R,
+        layer4_0_conv1_S ]'
+    - name: add_12_out
+      projection: '[ layer4_0_conv1_N, layer4_0_conv1_G*1024 + layer4_0_conv1_C, layer4_0_conv1_R
+        + layer4_0_conv1_P*1,  layer4_0_conv1_S + layer4_0_conv1_Q*1 ]'
+    - name: layer4_0_conv1_out
+      projection: '[ layer4_0_conv1_N, layer4_0_conv1_G*512 + layer4_0_conv1_M, layer4_0_conv1_P,
+        layer4_0_conv1_Q ]'
+      read-write: true
+    dimensions:
+    - layer4_0_conv1_G
+    - layer4_0_conv1_C
+    - layer4_0_conv1_M
+    - layer4_0_conv1_R
+    - layer4_0_conv1_S
+    - layer4_0_conv1_N
+    - layer4_0_conv1_P
+    - layer4_0_conv1_Q
+    name: layer4_0_conv1
+- instance: 0 <= layer4_0_conv2_G < 1 and 0 <= layer4_0_conv2_C < 512 and 0 <= layer4_0_conv2_M
+    < 512 and 0 <= layer4_0_conv2_N < 2 and 0 <= layer4_0_conv2_P < 7 and 0 <= layer4_0_conv2_Q
+    < 7 and 0 <= layer4_0_conv2_R < 3 and 0 <= layer4_0_conv2_S < 3
+  shape:
+    data-spaces:
+    - name: layer4_0_conv2_filter
+      projection: '[ layer4_0_conv2_G, layer4_0_conv2_C, layer4_0_conv2_M, layer4_0_conv2_R,
+        layer4_0_conv2_S ]'
+    - name: layer4_0_conv1_out
+      projection: '[ layer4_0_conv2_N, layer4_0_conv2_G*512 + layer4_0_conv2_C, layer4_0_conv2_R
+        + layer4_0_conv2_P*2,  layer4_0_conv2_S + layer4_0_conv2_Q*2 ]'
+    - name: layer4_0_conv2_out
+      projection: '[ layer4_0_conv2_N, layer4_0_conv2_G*512 + layer4_0_conv2_M, layer4_0_conv2_P,
+        layer4_0_conv2_Q ]'
+      read-write: true
+    dimensions:
+    - layer4_0_conv2_G
+    - layer4_0_conv2_C
+    - layer4_0_conv2_M
+    - layer4_0_conv2_R
+    - layer4_0_conv2_S
+    - layer4_0_conv2_N
+    - layer4_0_conv2_P
+    - layer4_0_conv2_Q
+    name: layer4_0_conv2
+- instance: 0 <= layer4_0_conv3_G < 1 and 0 <= layer4_0_conv3_C < 512 and 0 <= layer4_0_conv3_M
+    < 2048 and 0 <= layer4_0_conv3_N < 2 and 0 <= layer4_0_conv3_P < 7 and 0 <= layer4_0_conv3_Q
+    < 7 and 0 <= layer4_0_conv3_R < 1 and 0 <= layer4_0_conv3_S < 1
+  shape:
+    data-spaces:
+    - name: layer4_0_conv3_filter
+      projection: '[ layer4_0_conv3_G, layer4_0_conv3_C, layer4_0_conv3_M, layer4_0_conv3_R,
+        layer4_0_conv3_S ]'
+    - name: layer4_0_conv2_out
+      projection: '[ layer4_0_conv3_N, layer4_0_conv3_G*512 + layer4_0_conv3_C, layer4_0_conv3_R
+        + layer4_0_conv3_P*1,  layer4_0_conv3_S + layer4_0_conv3_Q*1 ]'
+    - name: layer4_0_conv3_out
+      projection: '[ layer4_0_conv3_N, layer4_0_conv3_G*2048 + layer4_0_conv3_M, layer4_0_conv3_P,
+        layer4_0_conv3_Q ]'
+      read-write: true
+    dimensions:
+    - layer4_0_conv3_G
+    - layer4_0_conv3_C
+    - layer4_0_conv3_M
+    - layer4_0_conv3_R
+    - layer4_0_conv3_S
+    - layer4_0_conv3_N
+    - layer4_0_conv3_P
+    - layer4_0_conv3_Q
+    name: layer4_0_conv3
+- instance: 0 <= layer4_0_downsample_0_G < 1 and 0 <= layer4_0_downsample_0_C < 1024
+    and 0 <= layer4_0_downsample_0_M < 2048 and 0 <= layer4_0_downsample_0_N < 2 and
+    0 <= layer4_0_downsample_0_P < 7 and 0 <= layer4_0_downsample_0_Q < 7 and 0 <=
+    layer4_0_downsample_0_R < 1 and 0 <= layer4_0_downsample_0_S < 1
+  shape:
+    data-spaces:
+    - name: layer4_0_downsample_0_filter
+      projection: '[ layer4_0_downsample_0_G, layer4_0_downsample_0_C, layer4_0_downsample_0_M,
+        layer4_0_downsample_0_R, layer4_0_downsample_0_S ]'
+    - name: add_12_out
+      projection: '[ layer4_0_downsample_0_N, layer4_0_downsample_0_G*1024 + layer4_0_downsample_0_C,
+        layer4_0_downsample_0_R + layer4_0_downsample_0_P*2,  layer4_0_downsample_0_S
+        + layer4_0_downsample_0_Q*2 ]'
+    - name: layer4_0_downsample_0_out
+      projection: '[ layer4_0_downsample_0_N, layer4_0_downsample_0_G*2048 + layer4_0_downsample_0_M,
+        layer4_0_downsample_0_P, layer4_0_downsample_0_Q ]'
+      read-write: true
+    dimensions:
+    - layer4_0_downsample_0_G
+    - layer4_0_downsample_0_C
+    - layer4_0_downsample_0_M
+    - layer4_0_downsample_0_R
+    - layer4_0_downsample_0_S
+    - layer4_0_downsample_0_N
+    - layer4_0_downsample_0_P
+    - layer4_0_downsample_0_Q
+    name: layer4_0_downsample_0
+- instance: 0 <= A < 2 and 0 <= B < 2048 and 0 <= C < 7 and 0 <= D < 7
+  shape:
+    data-spaces:
+    - name: layer4_0_conv3_out
+      projection: '[ A, B, C, D ]'
+    - name: layer4_0_downsample_0_out
+      projection: '[ A, B, C, D ]'
+    - name: add_13_out
+      projection: '[ A, B, C, D ]'
+      read-write: true
+    dimensions:
+    - A
+    - B
+    - C
+    - D
+    name: add_13
+- instance: 0 <= layer4_1_conv1_G < 1 and 0 <= layer4_1_conv1_C < 2048 and 0 <= layer4_1_conv1_M
+    < 512 and 0 <= layer4_1_conv1_N < 2 and 0 <= layer4_1_conv1_P < 7 and 0 <= layer4_1_conv1_Q
+    < 7 and 0 <= layer4_1_conv1_R < 1 and 0 <= layer4_1_conv1_S < 1
+  shape:
+    data-spaces:
+    - name: layer4_1_conv1_filter
+      projection: '[ layer4_1_conv1_G, layer4_1_conv1_C, layer4_1_conv1_M, layer4_1_conv1_R,
+        layer4_1_conv1_S ]'
+    - name: add_13_out
+      projection: '[ layer4_1_conv1_N, layer4_1_conv1_G*2048 + layer4_1_conv1_C, layer4_1_conv1_R
+        + layer4_1_conv1_P*1,  layer4_1_conv1_S + layer4_1_conv1_Q*1 ]'
+    - name: layer4_1_conv1_out
+      projection: '[ layer4_1_conv1_N, layer4_1_conv1_G*512 + layer4_1_conv1_M, layer4_1_conv1_P,
+        layer4_1_conv1_Q ]'
+      read-write: true
+    dimensions:
+    - layer4_1_conv1_G
+    - layer4_1_conv1_C
+    - layer4_1_conv1_M
+    - layer4_1_conv1_R
+    - layer4_1_conv1_S
+    - layer4_1_conv1_N
+    - layer4_1_conv1_P
+    - layer4_1_conv1_Q
+    name: layer4_1_conv1
+- instance: 0 <= layer4_1_conv2_G < 1 and 0 <= layer4_1_conv2_C < 512 and 0 <= layer4_1_conv2_M
+    < 512 and 0 <= layer4_1_conv2_N < 2 and 0 <= layer4_1_conv2_P < 7 and 0 <= layer4_1_conv2_Q
+    < 7 and 0 <= layer4_1_conv2_R < 3 and 0 <= layer4_1_conv2_S < 3
+  shape:
+    data-spaces:
+    - name: layer4_1_conv2_filter
+      projection: '[ layer4_1_conv2_G, layer4_1_conv2_C, layer4_1_conv2_M, layer4_1_conv2_R,
+        layer4_1_conv2_S ]'
+    - name: layer4_1_conv1_out
+      projection: '[ layer4_1_conv2_N, layer4_1_conv2_G*512 + layer4_1_conv2_C, layer4_1_conv2_R
+        + layer4_1_conv2_P*1,  layer4_1_conv2_S + layer4_1_conv2_Q*1 ]'
+    - name: layer4_1_conv2_out
+      projection: '[ layer4_1_conv2_N, layer4_1_conv2_G*512 + layer4_1_conv2_M, layer4_1_conv2_P,
+        layer4_1_conv2_Q ]'
+      read-write: true
+    dimensions:
+    - layer4_1_conv2_G
+    - layer4_1_conv2_C
+    - layer4_1_conv2_M
+    - layer4_1_conv2_R
+    - layer4_1_conv2_S
+    - layer4_1_conv2_N
+    - layer4_1_conv2_P
+    - layer4_1_conv2_Q
+    name: layer4_1_conv2
+- instance: 0 <= layer4_1_conv3_G < 1 and 0 <= layer4_1_conv3_C < 512 and 0 <= layer4_1_conv3_M
+    < 2048 and 0 <= layer4_1_conv3_N < 2 and 0 <= layer4_1_conv3_P < 7 and 0 <= layer4_1_conv3_Q
+    < 7 and 0 <= layer4_1_conv3_R < 1 and 0 <= layer4_1_conv3_S < 1
+  shape:
+    data-spaces:
+    - name: layer4_1_conv3_filter
+      projection: '[ layer4_1_conv3_G, layer4_1_conv3_C, layer4_1_conv3_M, layer4_1_conv3_R,
+        layer4_1_conv3_S ]'
+    - name: layer4_1_conv2_out
+      projection: '[ layer4_1_conv3_N, layer4_1_conv3_G*512 + layer4_1_conv3_C, layer4_1_conv3_R
+        + layer4_1_conv3_P*1,  layer4_1_conv3_S + layer4_1_conv3_Q*1 ]'
+    - name: layer4_1_conv3_out
+      projection: '[ layer4_1_conv3_N, layer4_1_conv3_G*2048 + layer4_1_conv3_M, layer4_1_conv3_P,
+        layer4_1_conv3_Q ]'
+      read-write: true
+    dimensions:
+    - layer4_1_conv3_G
+    - layer4_1_conv3_C
+    - layer4_1_conv3_M
+    - layer4_1_conv3_R
+    - layer4_1_conv3_S
+    - layer4_1_conv3_N
+    - layer4_1_conv3_P
+    - layer4_1_conv3_Q
+    name: layer4_1_conv3
+- instance: 0 <= A < 2 and 0 <= B < 2048 and 0 <= C < 7 and 0 <= D < 7
+  shape:
+    data-spaces:
+    - name: layer4_1_conv3_out
+      projection: '[ A, B, C, D ]'
+    - name: add_13_out
+      projection: '[ A, B, C, D ]'
+    - name: add_14_out
+      projection: '[ A, B, C, D ]'
+      read-write: true
+    dimensions:
+    - A
+    - B
+    - C
+    - D
+    name: add_14
+- instance: 0 <= layer4_2_conv1_G < 1 and 0 <= layer4_2_conv1_C < 2048 and 0 <= layer4_2_conv1_M
+    < 512 and 0 <= layer4_2_conv1_N < 2 and 0 <= layer4_2_conv1_P < 7 and 0 <= layer4_2_conv1_Q
+    < 7 and 0 <= layer4_2_conv1_R < 1 and 0 <= layer4_2_conv1_S < 1
+  shape:
+    data-spaces:
+    - name: layer4_2_conv1_filter
+      projection: '[ layer4_2_conv1_G, layer4_2_conv1_C, layer4_2_conv1_M, layer4_2_conv1_R,
+        layer4_2_conv1_S ]'
+    - name: add_14_out
+      projection: '[ layer4_2_conv1_N, layer4_2_conv1_G*2048 + layer4_2_conv1_C, layer4_2_conv1_R
+        + layer4_2_conv1_P*1,  layer4_2_conv1_S + layer4_2_conv1_Q*1 ]'
+    - name: layer4_2_conv1_out
+      projection: '[ layer4_2_conv1_N, layer4_2_conv1_G*512 + layer4_2_conv1_M, layer4_2_conv1_P,
+        layer4_2_conv1_Q ]'
+      read-write: true
+    dimensions:
+    - layer4_2_conv1_G
+    - layer4_2_conv1_C
+    - layer4_2_conv1_M
+    - layer4_2_conv1_R
+    - layer4_2_conv1_S
+    - layer4_2_conv1_N
+    - layer4_2_conv1_P
+    - layer4_2_conv1_Q
+    name: layer4_2_conv1
+- instance: 0 <= layer4_2_conv2_G < 1 and 0 <= layer4_2_conv2_C < 512 and 0 <= layer4_2_conv2_M
+    < 512 and 0 <= layer4_2_conv2_N < 2 and 0 <= layer4_2_conv2_P < 7 and 0 <= layer4_2_conv2_Q
+    < 7 and 0 <= layer4_2_conv2_R < 3 and 0 <= layer4_2_conv2_S < 3
+  shape:
+    data-spaces:
+    - name: layer4_2_conv2_filter
+      projection: '[ layer4_2_conv2_G, layer4_2_conv2_C, layer4_2_conv2_M, layer4_2_conv2_R,
+        layer4_2_conv2_S ]'
+    - name: layer4_2_conv1_out
+      projection: '[ layer4_2_conv2_N, layer4_2_conv2_G*512 + layer4_2_conv2_C, layer4_2_conv2_R
+        + layer4_2_conv2_P*1,  layer4_2_conv2_S + layer4_2_conv2_Q*1 ]'
+    - name: layer4_2_conv2_out
+      projection: '[ layer4_2_conv2_N, layer4_2_conv2_G*512 + layer4_2_conv2_M, layer4_2_conv2_P,
+        layer4_2_conv2_Q ]'
+      read-write: true
+    dimensions:
+    - layer4_2_conv2_G
+    - layer4_2_conv2_C
+    - layer4_2_conv2_M
+    - layer4_2_conv2_R
+    - layer4_2_conv2_S
+    - layer4_2_conv2_N
+    - layer4_2_conv2_P
+    - layer4_2_conv2_Q
+    name: layer4_2_conv2
+- instance: 0 <= layer4_2_conv3_G < 1 and 0 <= layer4_2_conv3_C < 512 and 0 <= layer4_2_conv3_M
+    < 2048 and 0 <= layer4_2_conv3_N < 2 and 0 <= layer4_2_conv3_P < 7 and 0 <= layer4_2_conv3_Q
+    < 7 and 0 <= layer4_2_conv3_R < 1 and 0 <= layer4_2_conv3_S < 1
+  shape:
+    data-spaces:
+    - name: layer4_2_conv3_filter
+      projection: '[ layer4_2_conv3_G, layer4_2_conv3_C, layer4_2_conv3_M, layer4_2_conv3_R,
+        layer4_2_conv3_S ]'
+    - name: layer4_2_conv2_out
+      projection: '[ layer4_2_conv3_N, layer4_2_conv3_G*512 + layer4_2_conv3_C, layer4_2_conv3_R
+        + layer4_2_conv3_P*1,  layer4_2_conv3_S + layer4_2_conv3_Q*1 ]'
+    - name: layer4_2_conv3_out
+      projection: '[ layer4_2_conv3_N, layer4_2_conv3_G*2048 + layer4_2_conv3_M, layer4_2_conv3_P,
+        layer4_2_conv3_Q ]'
+      read-write: true
+    dimensions:
+    - layer4_2_conv3_G
+    - layer4_2_conv3_C
+    - layer4_2_conv3_M
+    - layer4_2_conv3_R
+    - layer4_2_conv3_S
+    - layer4_2_conv3_N
+    - layer4_2_conv3_P
+    - layer4_2_conv3_Q
+    name: layer4_2_conv3
+- instance: 0 <= A < 2 and 0 <= B < 2048 and 0 <= C < 7 and 0 <= D < 7
+  shape:
+    data-spaces:
+    - name: layer4_2_conv3_out
+      projection: '[ A, B, C, D ]'
+    - name: add_14_out
+      projection: '[ A, B, C, D ]'
+    - name: add_15_out
+      projection: '[ A, B, C, D ]'
+      read-write: true
+    dimensions:
+    - A
+    - B
+    - C
+    - D
+    name: add_15
+- instance: 0 <= avgpool_C < 2048 and 0 <= avgpool_N < 2 and 0 <= avgpool_P < 1 and
+    0 <= avgpool_Q < 1 and 0 <= avgpool_R < 7 and 0 <= avgpool_S < 7
+  shape:
+    data-spaces:
+    - name: add_15_out
+      projection: '[ avgpool_N, avgpool_C, avgpool_R + avgpool_P*7,  avgpool_S + avgpool_Q*7
+        ]'
+    - name: avgpool_out
+      projection: '[ avgpool_N, avgpool_C, avgpool_P, avgpool_Q ]'
+      read-write: true
+    dimensions:
+    - avgpool_C
+    - avgpool_R
+    - avgpool_S
+    - avgpool_N
+    - avgpool_P
+    - avgpool_Q
+    name: avgpool
+- instance: 0 <= A < 2 and 0 <= B < 2048
+  shape:
+    data-spaces:
+    - name: avgpool_out
+      projection: '[ floor(B*1 + A*2048/2048)%2, floor(B*1 + A*2048/1)%2048, floor(B*1
+        + A*2048/1)%1, floor(B*1 + A*2048/1)%1 ]'
+    - name: flatten_out
+      projection: '[ A, B ]'
+      read-write: true
+    dimensions:
+    - A
+    - B
+    name: flatten
+- instance: 0 <= fc_G < 1 and 0 <= fc_C < 2048 and 0 <= fc_M < 1000 and 0 <= fc_N
+    < 2 and 0 <= fc_P < 1 and 0 <= fc_Q < 1 and 0 <= fc_R < 1 and 0 <= fc_S < 1
+  shape:
+    data-spaces:
+    - name: fc_filter
+      projection: '[ fc_G, fc_C, fc_M, fc_R, fc_S ]'
+    - name: flatten_out
+      projection: '[ fc_N, fc_G*2048 + fc_C, fc_R + fc_P*1,  fc_S + fc_Q*1 ]'
+    - name: fc_out
+      projection: '[ fc_N, fc_G*1000 + fc_M, fc_P, fc_Q ]'
+      read-write: true
+    dimensions:
+    - fc_G
+    - fc_C
+    - fc_M
+    - fc_R
+    - fc_S
+    - fc_N
+    - fc_P
+    - fc_Q
+    name: fc
