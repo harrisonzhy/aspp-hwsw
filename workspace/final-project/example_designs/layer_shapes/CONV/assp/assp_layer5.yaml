@@ -1,8 +1,8 @@
 problem:
   instance:
-    C: 1000
+    C: 1024
     G: 1
-    M: 1
+    M: 256
     N: 2
     P: 1
     Q: 1
@@ -10,9 +10,9 @@ problem:
     S: 1
   shape:
     coefficients:
-    - default: 1000
+    - default: 1024
       name: Cgroup
-    - default: 1
+    - default: 256
       name: Mgroup
     - default: 1
       name: Hstride
