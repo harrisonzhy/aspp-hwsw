@@ -21,12 +21,12 @@ def replace(file_path, old_text, new_text):
 
 def edit_files():
     folder_path = 'layer_shapes/CONV/assp'
-    base_name = "assp_layer"
 
     file_list = os.listdir(folder_path)
     file_list = sorted(file_list, key=get_layer_number)
 
     for i, filename in enumerate(file_list):
+        base_name = "assp_layer"
         new_filename = f"{base_name}{i+1}.yaml"
         
         old_file_path = os.path.join(folder_path, filename)
