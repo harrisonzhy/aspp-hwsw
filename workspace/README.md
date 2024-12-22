@@ -54,4 +54,4 @@ labels = ["GFLOPs (@1GHz)", "Utilization (%)", "Cycles", "Energy (uJ)", "EDP (J*
 archs = ["eyeriss_like", "simple_weight_stationary", "simple_output_stationary"]
 ```
 
-Simply specify the list of desired metrics, keeping in mind that the units for all of these metrics should be the same for the same plot, for instance, fJ/Compute. Regular expressions cleanly parse summary statistics and report the desired metrics.
+Simply specify the list of desired metrics, ensuring that all metrics are consistent (e.g. `fJ/compute`). Regular expressions cleanly parse summary statistics and report the desired metrics.
