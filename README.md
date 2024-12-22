@@ -1,7 +1,7 @@
 # aspp-hwsw
 
 ## Introduction
-This project explores AI accelerators for structured weight sparsity in dilated Atrous convolutions, which used in semantic segmentation to enhance receptive field without reducing the spatial dimension. 
+This project explores AI accelerators for structured weight sparsity in dilated Atrous convolutions, which are useful in semantic segmentation to enhance receptive field without reducing spatial dimensionality. 
 The codebase is based off of the publicly-available
 `timeloop-accelergy-exercises` repository, which contains example designs,
 workloads, and tutorials for using Timeloop and Accelergy.
