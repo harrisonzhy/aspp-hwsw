@@ -18,7 +18,7 @@ docker-compose up
 ## Performance Evaluation
 See `workspace/README.md` for details on how to model performance across different model architectures and different accelerator architectures.
 
-##  Related reading
+##  Related Reading
  - [Timeloop/Accelergy documentation](https://timeloop.csail.mit.edu/v4)
  - [Timeloop/Accelergy tutorial](http://accelergy.mit.edu/tutorial.html)
  - [SparseLoop tutorial](https://accelergy.mit.edu/sparse_tutorial.html)
