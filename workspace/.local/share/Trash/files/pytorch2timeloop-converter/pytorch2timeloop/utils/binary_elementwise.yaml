@@ -1,9 +1,0 @@
-problem:
-  shape:
-    name: "add"
-    dimensions: []
-    data-spaces:
-      - name: Input1
-      - name: Input2
-      - name: Outputs
-        read-write: True
