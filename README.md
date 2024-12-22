@@ -6,7 +6,7 @@ The codebase is based off of the publicly-available
 `timeloop-accelergy-exercises` repository, which contains example designs,
 workloads, and tutorials for using Timeloop and Accelergy.
 
-### Getting Started
+## Getting Started
 Update the container, and then start with `docker-compose up`. 
 ```
 cd aspp-hwsw
@@ -15,11 +15,10 @@ docker-compose pull
 docker-compose up
 ```
 
-### Performance Evaluation
+## Performance Evaluation
 See `workspace/README.md` for details on how to model performance across different model architectures and different accelerator architectures.
 
-###  Related reading
-
+##  Related reading
  - [Timeloop/Accelergy documentation](https://timeloop.csail.mit.edu/v4)
  - [Timeloop/Accelergy tutorial](http://accelergy.mit.edu/tutorial.html)
  - [SparseLoop tutorial](https://accelergy.mit.edu/sparse_tutorial.html)
